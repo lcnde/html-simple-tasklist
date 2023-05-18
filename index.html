@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+      /* We use the CSS Reset to overwrite the browsers default CSS rules. Without this, we will be viewing some elements differently within different browsers. */
+      html,
+      body,
+      div,
+      span,
+      applet,
+      object,
+      iframe,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      blockquote,
+      pre,
+      a,
+      abbr,
+      acronym,
+      address,
+      big,
+      cite,
+      code,
+      del,
+      dfn,
+      em,
+      img,
+      ins,
+      kbd,
+      q,
+      s,
+      samp,
+      small,
+      strike,
+      strong,
+      sub,
+      sup,
+      tt,
+      var,
+      b,
+      u,
+      i,
+      center,
+      dl,
+      dt,
+      dd,
+      ol,
+      ul,
+      li,
+      fieldset,
+      form,
+      label,
+      legend,
+      table,
+      caption,
+      tbody,
+      tfoot,
+      thead,
+      tr,
+      th,
+      td,
+      article,
+      aside,
+      canvas,
+      details,
+      embed,
+      figure,
+      figcaption,
+      footer,
+      header,
+      hgroup,
+      menu,
+      nav,
+      output,
+      ruby,
+      section,
+      summary,
+      time,
+      mark,
+      audio,
+      video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+      }
+      /* HTML5 display-role reset for older browsers */
+      article,
+      aside,
+      details,
+      figcaption,
+      figure,
+      footer,
+      header,
+      hgroup,
+      menu,
+      nav,
+      section {
+        display: block;
+      }
+      body {
+        line-height: 1;
+      }
+      ol,
+      ul {
+        list-style: none;
+      }
+      blockquote,
+      q {
+        quotes: none;
+      }
+      blockquote:before,
+      blockquote:after,
+      q:before,
+      q:after {
+        content: '';
+        content: none;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      /* Import fonts */
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+      /* When there is a value that we will have to use multiple times it's always better to put it inside a variable */
+      :root {
+        --box-shadow-custom: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        --text-gray: #808080;
+      }
+
+      html {
+        font-family: 'Inter', sans-serif;
+      }
+      html * {
+        /* The CSS box-sizing property allows us to include the padding and border in an element's total width and height. More info on W3C */
+        box-sizing: border-box;
+      }
+      h1 {
+        /*   We use rem for font size because this unit will scale according to the user's browser settings or device preferences. This ensures better accessibility and readability for users with different visual needs. */
+        font-size: 2.5rem;
+      }
+      h2 {
+        font-size: 1.875rem;
+      }
+
+      .main-container {
+        display: flex;
+        justify-content: center;
+      }
+
+      .todolist-container {
+        /* To declare colors it's always better use hex or rgba code (or equivalent) instead of the browser's preset colors (e.g. background-color: white). While it works to use "white" as a color, colors names may have slight variations from browser to browser so to have a design that remains consistent accross browsers you have to declare colors with their values */
+        background-color: #fff;
+        box-shadow: var(--box-shadow-custom);
+        /* The margin of 10px on the sides is added for mobile devices where the form will touch the borders of the screen */
+        margin: 50px 10px;
+        width: 100%;
+        max-width: 800px;
+        border-radius: 10px;
+        padding: 50px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .title-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-weight: 500;
+      }
+
+      .title-icon {
+        border-radius: 100%;
+        min-height: 50px;
+        min-width: 50px;
+        background-color: #808080;
+      }
+
+      .add-task-form-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .name-lastname-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .todolist-field-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+      .todolist-form-label {
+        color: var(--text-gray);
+        padding: 2px 0;
+        font-size: 0.875rem;
+      }
+      /* I omit hte styling for the highlighted input box, but on a real site it would have been necessary */
+      .todolist-form-input {
+        height: 30px;
+        border: 1px solid #d5d5d5;
+        border-radius: 5px;
+        padding: 0 5px;
+      }
+      .todolist-textarea-input {
+        border: 1px solid #d5d5d5;
+        border-radius: 5px;
+        resize: none;
+        height: 150px;
+      }
+      .add-button-container {
+        display: flex;
+        justify-content: center;
+      }
+      .form-add-button {
+        margin: 20px 0;
+        background-color: #fc6e51;
+        border: none;
+        padding: 10px 70px;
+        font-size: 1.25rem;
+        color: #fff;
+        border-radius: 999px;
+        cursor: pointer;
+        box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .tasklist-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+      }
+      .single-task-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #d5d5d5;
+        border-radius: 5px;
+        width: 100%;
+      }
+      /* This is a direct child selector, will apply the following classes only to the direct children of the .single-task-container class */
+      .single-task-container > div {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      
+
+      @media only screen and (min-width: 640px) {
+        /* I usually add media queries as last */
+        /* This media query puts the firstname and lastname containers in flex-direction row */
+        .name-lastname-container {
+          flex-direction: row;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="todolist-container">
+        <div class="title-container">
+          <span class="title-icon"></span>
+          <h1>To Do List</h1>
+        </div>
+        <form class="add-task-form-container">
+          <!-- Contains the name and lastname fields -->
+          <div class="name-lastname-container">
+            <!--         Contains the first name -->
+            <div class="todolist-field-container">
+              <label for="name" class="todolist-form-label">Nome</label>
+              <input
+                type="text"
+                class="todolist-form-input"
+                id="name"
+                required />
+            </div>
+            <!--         Contains the last name -->
+            <div class="todolist-field-container">
+              <label for="name" class="todolist-form-label">Cognome</label>
+              <input
+                type="text"
+                class="todolist-form-input"
+                id="lastname"
+                required />
+            </div>
+          </div>
+          <!-- Contains the description textarea field -->
+          <div class="todolist-field-container">
+            <label for="description" class="todolist-form-label"
+              >Descrizione della task</label
+            >
+            <textarea
+              class="todolist-textarea-input"
+              id="description"
+              name="message"></textarea>
+          </div>
+          <!-- Contains the button that will add the task to the Task List -->
+          <div class="add-button-container">
+            <button type="submit" class="form-add-button">Aggiungi</button>
+          </div>
+        </form>
+        <div class="tasklist-container">
+          <!-- Container for the title -->
+          <h2>Task List</h2>
+          <div class="single-task-container">
+            <div>
+              <div class="todolist-form-label">Task assegnata a:</div>
+              <div class="responsible-name">Mario Bianchi</div>
+            </div>
+            <div>
+              <div class="todolist-form-label">Descrizione Task:</div>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore deserunt aut at voluptatum numquam nostrum ad quos, distinctio odio. Odio amet natus mollitia error soluta tempora quas pariatur fuga eaque.</p>
+            </div>
+          </div>
+          <div class="single-task-container">
+            <div>
+              <div class="todolist-form-label">Task assegnata a:</div>
+              <div class="responsible-name">Mario Bianchi</div>
+            </div>
+            <div>
+              <div class="todolist-form-label">Descrizione Task:</div>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore deserunt aut at voluptatum numquam nostrum ad quos, distinctio odio. Odio amet natus mollitia error soluta tempora quas pariatur fuga eaque.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
